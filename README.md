@@ -6,7 +6,7 @@
 ### <img src="https://img.icons8.com/doodle/26/000000/android--v1.png"/> 3. Android
 ### <img src="https://img.icons8.com/fluent/26/000000/internet.png"/> 4. Web Payloads
 ### <img src="https://img.icons8.com/doodle/26/000000/console.png"/> 5. Shellcode For Buffer Overflow
-
+### <img src="https://img.icons8.com/metro/26/000000/mac-os.png"/> 6. Coming Soon 
 
 ## Installation Steps
 ### 1.) git clone https://github.com/itsjeffersonli/Venom_Generator
