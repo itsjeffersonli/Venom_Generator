@@ -17,7 +17,8 @@
 ## Language Used And Tools Used 
 <a><img src="https://img.icons8.com/fluent/48/000000/github.png"/></a>
 <img src="https://img.icons8.com/officel/48/000000/console.png"/>
-<img src="https://img.icons8.com/color/26/000000/visual-studio-code-2019.png"/>
+<img src="https://img.icons8.com/color/48/000000/visual-studio-code-2019.png"/>
+<img src="https://img.icons8.com/color/48/000000/kali-linux.png"/>
 
 ## <img src="https://img.icons8.com/doodle/26/000000/money.png"/> Donations
 <a href="paypal.me/JohnJeffersonLi"><img src="https://img.shields.io/badge/paypal-%2300457C.svg?&style=for-the-badge&logo=paypal&logoColor=white" style="max-width:100%;"></a>
