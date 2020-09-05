@@ -20,21 +20,6 @@ for i in {1..35}; do
 done
 }
 
-#check toilet
-which toilet > /dev/null 2>&1
-if [ "$?" -eq "0" ]; then
-	toilet='1'
-else
-	toilet='0'
-fi
-
-which figlet > /dev/null 2>&1
-if [ "$?" -eq "0" ]; then
-	figlet='1'
-else
-	figlet='0'
-fi
-
 #check msfconsole 
 which msfconsole > /dev/null 2>&1
 if [ "$?" -eq "0" ]; then
@@ -64,7 +49,7 @@ echo -n Check script dependencies = =;
 
 sleep 3 & while [ "$(ps a | awk '{print $1}' | grep $!)" ] ; do for X in '-' '\' '|' '/'; do echo -en "\b$X"; sleep 0.1; done; done
 
-if [ "$msfconsole" == "1" ] && [ "$msfvenom" == "1" ] && [ "$nc" == "1" ] && [ "$figlet" == "1" ] || [ "$toilet" == "1" ]
+if [ "$msfconsole" == "1" ] && [ "$msfvenom" == "1" ] && [ "$nc" == "1" ]
 	then
 		echo -en "\b【\e[1;33mPass\e[0m】"
 		echo ""
@@ -72,12 +57,10 @@ if [ "$msfconsole" == "1" ] && [ "$msfvenom" == "1" ] && [ "$nc" == "1" ] && [ "
 		echo -e 'nc              【\e[1;33mOk\e[0m】'
    		echo -e 'msfconsole      【\e[1;33mOk\e[0m】'
 		echo -e 'msfvenom        【\e[1;33mOk\e[0m】'
-		echo -e 'Toilet          【\e[1;33mOk\e[0m】'
-		echo -e 'Figlet          【\e[1;33mOk\e[0m】'
 		echo ""
 		sleep 2
 fi
-if [ "$msfconsole" == "0" ] && [ "$msfvenom" == "0" ] && [ "$nc" == "0" ] && [ "$figlet" == "0" ] || [ "$toilet" == "0" ]
+if [ "$msfconsole" == "0" ] && [ "$msfvenom" == "0" ] && [ "$nc" == "0" ]
 	then
 		fail='1'
 		echo -en "\b \e[0;31m【Fail】\e[0m"
