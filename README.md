@@ -9,7 +9,7 @@
      5.1 Check the Overflow Value
      5.2 Create A Random Character Pattern
      5.3 Offset Check for EIP
-     5.4 Generate A SHellcode
+     5.4 Generate A Shellcode
 ### <img src="https://img.icons8.com/metro/26/000000/mac-os.png"/> 6. Coming Soon 
 
 ## Installation Steps
