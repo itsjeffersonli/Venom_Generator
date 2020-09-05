@@ -6,7 +6,10 @@
 ### <img src="https://img.icons8.com/doodle/26/000000/android--v1.png"/> 3. Android
 ### <img src="https://img.icons8.com/fluent/26/000000/internet.png"/> 4. Web Payloads
 ### <img src="https://img.icons8.com/doodle/26/000000/console.png"/> 5. Buffer Overflow
-     hi
+     5.1 Check the Overflow Value
+     5.2 Create A Random Character Pattern
+     5.3 Offset Check for EIP
+     5.4 Generate A SHellcode
 ### <img src="https://img.icons8.com/metro/26/000000/mac-os.png"/> 6. Coming Soon 
 
 ## Installation Steps
