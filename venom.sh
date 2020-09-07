@@ -84,8 +84,8 @@ echo "\e[35mCoded By: run3\e[0"
 echo -e "\e[34m[1]\e[35m Linux Based Payloads"
 echo -e "\e[34m[2]\e[35m Windows Based Payloads"
 echo -e "\e[34m[3]\e[35m Web Based Payload"
-echo -e "\e[34m[3]\e[35m Android Based Payload"
-echo -e	"\e[34m[4]\e[35m Buffer Overfows \e[0m"
+echo -e "\e[34m[4]\e[35m Android Based Payload"
+echo -e	"\e[34m[5]\e[35m Buffer Overfows \e[0m"
 echo ""
 
 read -p "Choose What Number: " option
@@ -146,7 +146,7 @@ if [ $option == 2 ]
 	then
 		echo -e "\e[34m[1]\e[35m Meterpreter Based"
         echo -e "\e[34m[2]\e[35m Non-Meterpreter Based\e[0m"
-		read - p "Choose 1 or 2: " windows_option
+		read -p "Choose 1 or 2: " windows_option
 		if [ $windows_option == 1 ]
 			then
 				echo -e "\e[34m[1]\e[35m x86 (32 bit Payload)"
