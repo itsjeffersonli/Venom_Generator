@@ -375,21 +375,21 @@ if [ $option == 5 ]
 						msf-pattern_create -l $rand_chars >> $dir/rand_chars.txt
 				fi		
 		fi		
-		if [ buffer_option == 3 ]
+		if [ $buffer_option == 3 ]
 			then
 				read -p "How many Random Character did you generate: " rand_chars_generated
 				read -p "What is the EIP Value after you send your random characters: " eip_val
 				msf-pattern_offset -l $rand_chars_generated -q $eip_val
 		fi
-		if [ buffer_option == 4 ]
+		if [ $buffer_option == 4 ]
 			then
 				echo -e "\e[34m[1]\e[35m Windows"
-				echo -e "\e[34m[2]\e[35m Linux"
+				echo -e "\e[34m[2]\e[35m Linux\e[0m"
 				read -p "What Os you want to generate a shellcode: " shellcode_option
 				if [ $shellcode_option == 1 ]
 					then
 						echo -e "\e[34m[1]\e[35m x86"
-						echo -e "\e[34m[2]\e[35m x64"
+						echo -e "\e[34m[2]\e[35m x64\e[0m"
 						read -p "What is The Architecture:(Choose 1 or 2): " arch_windows_shellcode
 						if [ $arch_windows_shellcode == 1 ]
 							then
@@ -413,7 +413,7 @@ if [ $option == 5 ]
 				if [ $shellcode_option == 2 ]
 					then
 						echo -e "\e[34m[1]\e[35m x86"
-						echo -e "\e[34m[2]\e[35m x64"
+						echo -e "\e[34m[2]\e[35m x64\e[0m"
 						read -p "What is The Architecture:(Choose 1 or 2): " arch_linux_shellcode
 						if [ $arch_linux_shellcode == 1 ]
 							then
